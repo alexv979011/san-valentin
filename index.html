@@ -94,9 +94,10 @@
     }
 
     @keyframes float {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-800px); opacity: 0; }
-    }
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-120vh); opacity: 0; } /* que siempre suba más allá de la pantalla */
+}
+
 
 
 
@@ -207,9 +208,8 @@ musica.play();
     function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
-  // Limitamos que se genere dentro de la pantalla
-  const maxWidth = window.innerWidth - 20;
-  heart.style.left = Math.random() * maxWidth + "px";
+  heart.style.left = Math.random() * (window.innerWidth - 20) + "px";
+  heart.style.top = window.innerHeight + "px"; // empieza desde abajo de la pantalla
   heart.style.fontSize = Math.random() * 18 + 12 + "px";
   heart.style.animationDuration = Math.random() * 3 + 4 + "s";
   document.body.appendChild(heart);
@@ -220,13 +220,15 @@ musica.play();
 }
 
 
-    setInterval(createHeart, 80);
+
+    setInterval(createHeart, 120);
 
     
   </script>
 
 </body>
 </html>  
+
 
 
 
