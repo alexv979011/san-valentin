@@ -117,6 +117,26 @@
     transform: scale(1);
   }
 }
+    #card {
+  position: relative;
+  z-index: 10;
+}
+
+    .heart {
+  position: absolute;
+  bottom: -20px;
+  color: rgba(255,255,255,0.8); /* Corazones blancos siempre */
+  font-size: 18px;
+  animation: float 6s infinite ease-in;
+  pointer-events: none; /* Para que no bloqueen clics */
+}
+@media (max-width: 480px) {
+  .heart {
+    font-size: 12px !important;
+  }
+}
+
+    
 
   </style>
 </head>
@@ -185,18 +205,20 @@ musica.play();
     });
 
     function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "❤";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 18 + 12 + "px";
-      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
-      document.body.appendChild(heart);
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  // Limitamos que se genere dentro de la pantalla
+  const maxWidth = window.innerWidth - 20;
+  heart.style.left = Math.random() * maxWidth + "px";
+  heart.style.fontSize = Math.random() * 18 + 12 + "px";
+  heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+  document.body.appendChild(heart);
 
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
-    }
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
 
     setInterval(createHeart, 80);
 
@@ -205,5 +227,6 @@ musica.play();
 
 </body>
 </html>  
+
 
 
